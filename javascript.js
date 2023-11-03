@@ -1,6 +1,45 @@
+const container = document.querySelector('#container');
+const btnContainer = document.querySelector('#btn-container');
+
+const btnRock = document.createElement('button');
+
+const btnScissors = document.createElement('button');
+const btnPaper = document.createElement('button');
+const player = document.createElement('div');
+const computer = document.createElement('div');
+const scoreInfo = document.createElement('div');
+
 let choices = ["rock", "paper", "scissors"]
 let currentUserPoints = 0;
-let currentComputerPoints = 0;
+let currentComputerPoints = 0
+
+let images = ["./images/icons8-hand-scissors-48.png", "./images/icons8-paper-hand-48.png", "./images/icons8-rock-hand-48.png"];
+
+btns = [btnRock, btnScissors, btnPaper];
+
+btnRock.id = "btn-rock";
+for (let j = 0; j < images.length; j++) {
+  // btns[i].classList.add('button-focus');	
+	btns[j].style.backgroundImage = `url(${images[j]})`;
+	btns[j].style.backgroundSize = 'cover';
+	btns[j].style.backgroundRepeat = 'no-repeat';
+	btns[j].style.border = 'none'; 
+	btns[j].style.width = '200px';
+	btns[j].style.height = '200px'; 
+	btns[j].style.cursor = 'pointer';
+	btns[j].style['border-radius'] = '20px';
+	btns[j].style['background-color'] = "grey";
+}
+
+btnScissors.id = "btn-scissors"
+
+btnPaper.id = "btn-paper";
+
+player.id = "player-score";
+
+computer.id = "computer-score";
+
+scoreInfo.id = "score-info";
 
 function getComputerChoice() {
 	return choices[Math.floor(Math.random() * choices.length)];
@@ -9,10 +48,7 @@ function getComputerChoice() {
 function playRound(getUserChoice) {
 	const playerChoice = getUserChoice;
 	const computerChoice = getComputerChoice();
-	if (playerChoice === computerChoice) {
-		console.log("It's a tie!");
-	}
-	else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
+	if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
 		console.log(`You win! ${playerChoice} beats ${computerChoice}.`);
 		currentUserPoints += 1;
 	} 
@@ -22,22 +58,10 @@ function playRound(getUserChoice) {
 	}	
 }
 
-const container = document.querySelector('#container')
-
-const btnRock = document.createElement('button');
-btnRock.textContent = "Rock";
-const btnScissors = document.createElement('button');
-btnScissors.textContent = "Scissors"
-const btnPaper = document.createElement('button');
-btnPaper.textContent = "Paper";
-const userPoints = document.createElement('div');
-const computerPoints = document.createElement('div');
-const finalResult = document.createElement('div');
-
 let buttons = [btnRock, btnPaper, btnScissors];
 
 for (let i = 0; i < buttons.length; i++) {
-	container.appendChild(buttons[i]);
+	btnContainer.appendChild(buttons[i]);
 }
 
 
@@ -59,24 +83,24 @@ function game() {
 }
 
 function updateGame() {
-	userPoints.textContent = `User Points: ${currentUserPoints}`;
-	computerPoints.textContent = `Computer Points: ${currentComputerPoints}`;
+	player.textContent = `User Points: ${currentUserPoints}`;
+	computer.textContent = `Computer Points: ${currentComputerPoints}`;
 
   if (currentUserPoints == 5) {
-    finalResult.textContent = `Congratulations! You won!`;
+    scoreInfo.textContent = "Congratulations! You won!";
 
     currentUserPoints = 0;
 		currentComputerPoints = 0;
   }
 	else if (currentComputerPoints == 5) {
-		finalResult.textContent = "You lost! :("
+		scoreInfo.textContent = "You lost! :("
 
     currentUserPoints = 0;
 		currentComputerPoints = 0;
 	}
-	container.appendChild(userPoints);
-	container.appendChild(computerPoints);
-	container.appendChild(finalResult);
+	container.appendChild(player);
+	container.appendChild(computer);
+	container.appendChild(scoreInfo);
 }
 
 game();

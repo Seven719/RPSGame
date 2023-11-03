@@ -1,0 +1,15 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	background: #2c3330;
+}
+
+#container {
+	color: white;
+}
+
+#btn-container {
+	display: flex;
+	justify-content: space-between;
+}
+
