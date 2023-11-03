@@ -2,7 +2,6 @@ const container = document.querySelector('#container');
 const btnContainer = document.querySelector('#btn-container');
 
 const btnRock = document.createElement('button');
-
 const btnScissors = document.createElement('button');
 const btnPaper = document.createElement('button');
 const player = document.createElement('div');
@@ -15,11 +14,10 @@ let currentComputerPoints = 0
 
 let images = ["./images/icons8-hand-scissors-48.png", "./images/icons8-paper-hand-48.png", "./images/icons8-rock-hand-48.png"];
 
-btns = [btnRock, btnScissors, btnPaper];
+let btns = [btnRock, btnScissors, btnPaper];
 
 btnRock.id = "btn-rock";
 for (let j = 0; j < images.length; j++) {
-  // btns[i].classList.add('button-focus');	
 	btns[j].style.backgroundImage = `url(${images[j]})`;
 	btns[j].style.backgroundSize = 'cover';
 	btns[j].style.backgroundRepeat = 'no-repeat';
@@ -28,7 +26,6 @@ for (let j = 0; j < images.length; j++) {
 	btns[j].style.height = '200px'; 
 	btns[j].style.cursor = 'pointer';
 	btns[j].style['border-radius'] = '20px';
-	btns[j].style['background-color'] = "grey";
 }
 
 btnScissors.id = "btn-scissors"
