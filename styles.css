@@ -17,7 +17,7 @@ body {
 
 #top-container {
 	display: flex;
-	justify-content: center;
+	justify-content: safe center;
 	align-items: center;
 	background: black;
 	color: white;
