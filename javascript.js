@@ -1,12 +1,14 @@
 const container = document.querySelector('#container');
 const btnContainer = document.querySelector('#btn-container');
+const statusContainer = document.querySelector('#status-container');
+
 
 const btnRock = document.createElement('button');
 const btnScissors = document.createElement('button');
 const btnPaper = document.createElement('button');
 const player = document.createElement('div');
 const computer = document.createElement('div');
-const scoreInfo = document.createElement('div');
+const endGameInfo = document.createElement('div');
 
 let choices = ["rock", "paper", "scissors"]
 let currentUserPoints = 0;
@@ -26,6 +28,7 @@ for (let j = 0; j < images.length; j++) {
 	btns[j].style.height = '200px'; 
 	btns[j].style.cursor = 'pointer';
 	btns[j].style['border-radius'] = '20px';
+	btns[j].style.margin = "20px";
 }
 
 btnScissors.id = "btn-scissors"
@@ -36,7 +39,7 @@ player.id = "player-score";
 
 computer.id = "computer-score";
 
-scoreInfo.id = "score-info";
+endGameInfo.id = "endgame-info";
 
 function getComputerChoice() {
 	return choices[Math.floor(Math.random() * choices.length)];
@@ -63,6 +66,8 @@ for (let i = 0; i < buttons.length; i++) {
 
 
 function game() {
+	
+
 	btnRock.addEventListener('click', () => {
 		playRound('rock');
 		updateGame();
@@ -80,24 +85,24 @@ function game() {
 }
 
 function updateGame() {
-	player.textContent = `User Points: ${currentUserPoints}`;
-	computer.textContent = `Computer Points: ${currentComputerPoints}`;
+	player.textContent = `Player: ${currentUserPoints}`;
+	computer.textContent = `Computer: ${currentComputerPoints}`;
 
   if (currentUserPoints == 5) {
-    scoreInfo.textContent = "Congratulations! You won!";
+    endGameInfo.textContent = "Congratulations! You won!";
 
     currentUserPoints = 0;
 		currentComputerPoints = 0;
   }
 	else if (currentComputerPoints == 5) {
-		scoreInfo.textContent = "You lost! :("
+		endGameInfo.textContent = "You lost! :("
 
     currentUserPoints = 0;
 		currentComputerPoints = 0;
 	}
-	container.appendChild(player);
-	container.appendChild(computer);
-	container.appendChild(scoreInfo);
+	statusContainer.appendChild(player);
+	statusContainer.appendChild(computer);
+	container.appendChild(endGameInfo);
 }
 
 game();

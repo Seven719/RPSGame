@@ -10,6 +10,33 @@ body {
 
 #btn-container {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-shrink: 30;
 }
 
+#top-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: black;
+	color: white;
+	font-size: 3rem;
+	font-weight: bold;
+	padding: 4rem;
+	margin-bottom: 2rem;
+}
+
+#status-container {
+	display: flex;
+	font-size: 30px;
+	font-weight: bold;
+	justify-content: safe center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+#player-score,
+#computer-score {
+	margin: 40px;
+}
