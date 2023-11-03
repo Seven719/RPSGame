@@ -1,13 +1,15 @@
 const container = document.querySelector('#container');
 const btnContainer = document.querySelector('#btn-container');
 const statusContainer = document.querySelector('#status-container');
-
+const player = document.querySelector('#player-score');
+const computer = document.querySelector('#computer-score');
+const scoreInfo = document.querySelector('#score-info');
+const scoreMessage = document.querySelector('#score-message');
+const scorePoints = document.querySelector('#score-points');
 
 const btnRock = document.createElement('button');
 const btnScissors = document.createElement('button');
 const btnPaper = document.createElement('button');
-const player = document.createElement('div');
-const computer = document.createElement('div');
 const endGameInfo = document.createElement('div');
 
 let choices = ["rock", "paper", "scissors"]
@@ -48,12 +50,18 @@ function getComputerChoice() {
 function playRound(getUserChoice) {
 	const playerChoice = getUserChoice;
 	const computerChoice = getComputerChoice();
-	if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
-		console.log(`You win! ${playerChoice} beats ${computerChoice}.`);
+	if (playerChoice === computerChoice) {
+		scoreInfo.textContent = "It's a tie."; 
+		scoreMessage.textContent = `${playerChoice} ties with ${computerChoice}!`;
+	}
+	else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper")) {
+		scoreInfo.textContent = "You win!"; 
+		scoreMessage.textContent = `${playerChoice} beats ${computerChoice}!`;
 		currentUserPoints += 1;
 	} 
 	else {
-		console.log(`You lose! ${computerChoice} beats ${playerChoice}.`);
+		scoreInfo.textContent = "You lose!";
+		scoreMessage.textContent = `${computerChoice} beats ${playerChoice}!`;
 		currentComputerPoints += 1;
 	}	
 }
@@ -66,7 +74,6 @@ for (let i = 0; i < buttons.length; i++) {
 
 
 function game() {
-	
 
 	btnRock.addEventListener('click', () => {
 		playRound('rock');
@@ -85,23 +92,33 @@ function game() {
 }
 
 function updateGame() {
-	player.textContent = `Player: ${currentUserPoints}`;
-	computer.textContent = `Computer: ${currentComputerPoints}`;
+	let finishedGame = false;
 
   if (currentUserPoints == 5) {
     endGameInfo.textContent = "Congratulations! You won!";
 
     currentUserPoints = 0;
 		currentComputerPoints = 0;
+		finishedGame = true;
+		scorePoints.appendChild(player);
   }
 	else if (currentComputerPoints == 5) {
 		endGameInfo.textContent = "You lost! :("
 
     currentUserPoints = 0;
 		currentComputerPoints = 0;
+		finishedGame = true;
+		scorePoints.appendChild(computer);
 	}
-	statusContainer.appendChild(player);
-	statusContainer.appendChild(computer);
+	player.textContent = `Player: ${currentUserPoints}`;
+	computer.textContent = `Computer: ${currentComputerPoints}`;
+
+	if (finishedGame) {
+		scoreInfo.textContent = "Choose your weapon";
+		scoreMessage.textContent = "First to 5 wins the game";
+	}
+	scorePoints.appendChild(player);
+	scorePoints.appendChild(computer);
 	container.appendChild(endGameInfo);
 }
 

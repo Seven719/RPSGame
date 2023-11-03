@@ -34,9 +34,19 @@ body {
 	justify-content: safe center;
 	align-items: center;
 	flex-wrap: wrap;
+	flex-direction: column;
 }
 
 #player-score,
 #computer-score {
 	margin: 40px;
+}
+
+#score-text {
+	display: flex;
+	flex-direction: column;
+}
+
+#score-points {
+	display: flex;
 }
