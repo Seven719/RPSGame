@@ -6,21 +6,23 @@ const computer = document.querySelector('#computer-score');
 const scoreInfo = document.querySelector('#score-info');
 const scoreMessage = document.querySelector('#score-message');
 const scorePoints = document.querySelector('#score-points');
+const playAgain = document.querySelector('#playagain-container');
+const endGameInfo = document.querySelector('#endgame-info');
 
 const btnRock = document.createElement('button');
 const btnScissors = document.createElement('button');
 const btnPaper = document.createElement('button');
-const endGameInfo = document.createElement('div');
+const endGameText = document.createElement('div');
+const endGameButton = document.createElement('button');
 
 let choices = ["rock", "paper", "scissors"]
 let currentUserPoints = 0;
 let currentComputerPoints = 0
 
-let images = ["./images/icons8-hand-scissors-48.png", "./images/icons8-paper-hand-48.png", "./images/icons8-rock-hand-48.png"];
+let images = ["./images/icons8-clenched-fist-96.png", "./images/icons8-hand-scissors-skin-type-2-96.png", "./images/icons8-hand-96.png"];
 
 let btns = [btnRock, btnScissors, btnPaper];
 
-btnRock.id = "btn-rock";
 for (let j = 0; j < images.length; j++) {
 	btns[j].style.backgroundImage = `url(${images[j]})`;
 	btns[j].style.backgroundSize = 'cover';
@@ -33,15 +35,9 @@ for (let j = 0; j < images.length; j++) {
 	btns[j].style.margin = "20px";
 }
 
-btnScissors.id = "btn-scissors"
-
-btnPaper.id = "btn-paper";
-
 player.id = "player-score";
 
 computer.id = "computer-score";
-
-endGameInfo.id = "endgame-info";
 
 function getComputerChoice() {
 	return choices[Math.floor(Math.random() * choices.length)];
@@ -93,9 +89,10 @@ function game() {
 
 function updateGame() {
 	let finishedGame = false;
+	endGameText.textContent = "";
 
   if (currentUserPoints == 5) {
-    endGameInfo.textContent = "Congratulations! You won!";
+    endGameText.textContent = "Congratulations! You won!";
 
     currentUserPoints = 0;
 		currentComputerPoints = 0;
@@ -103,7 +100,7 @@ function updateGame() {
 		scorePoints.appendChild(player);
   }
 	else if (currentComputerPoints == 5) {
-		endGameInfo.textContent = "You lost! :("
+		endGameText.textContent = "You lost! :("
 
     currentUserPoints = 0;
 		currentComputerPoints = 0;
@@ -119,7 +116,7 @@ function updateGame() {
 	}
 	scorePoints.appendChild(player);
 	scorePoints.appendChild(computer);
-	container.appendChild(endGameInfo);
+	endGameInfo.appendChild(endGameText);
 }
 
 game();
