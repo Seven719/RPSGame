@@ -35,10 +35,6 @@ for (let j = 0; j < images.length; j++) {
 	btns[j].style.margin = "20px";
 }
 
-player.id = "player-score";
-
-computer.id = "computer-score";
-
 function getComputerChoice() {
 	return choices[Math.floor(Math.random() * choices.length)];
 }
